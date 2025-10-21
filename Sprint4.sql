@@ -135,24 +135,16 @@ ADD CONSTRAINT transaction_user_fkey FOREIGN KEY (user_id) REFERENCES user (id);
 
 SELECT * FROM user;
 
-
 # Ejercicio 1
 # Realiza una subconsulta que muestre a todos los usuarios con más de 80 transacciones utilizando al menos 2 tablas.
 
-SELECT t.user_id, COUNT(t.id) AS num_transacciones, u.name, u.surname
-FROM transaction AS t
-LEFT JOIN user AS u								# se unen las 2 tablas trasaction y user 
-ON t.user_id = u.id
-GROUP BY t.user_id								# se agrupa por usuarios
-HAVING COUNT(t.id) > 80;						# filtro de num de transacciones
-
-# consulta con uso de subconsulta
-SELECT t.user_id, COUNT(t.id) AS num_transacciones, u.name, u.surname
-FROM transaction AS t
-JOIN (SELECT * FROM user ) AS u
-WHERE t.user_id = u.id
-GROUP BY t.user_id
-HAVING COUNT(t.id) > 80;
+SELECT u.id, t.num_transacciones, u.name, u.surname
+FROM (SELECT user_id, COUNT(id) AS num_transacciones  
+		FROM transaction      									 # subconsulta sobre tabla transaction 
+		GROUP BY user_id 										 # agrupa por user
+        HAVING COUNT(id) > 80) AS t								 # limita a mas de 80 transacciones
+JOIN user AS u
+WHERE t.user_id = u.id;
 
 # Ejercicio 2
 # Muestra la media de amount por IBAN de las tarjetas de crédito en la compañía Donec Ltd., utiliza por lo menos 2 tablas.
