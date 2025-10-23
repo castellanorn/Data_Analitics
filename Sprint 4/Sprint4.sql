@@ -138,13 +138,16 @@ SELECT * FROM user;
 # Ejercicio 1
 # Realiza una subconsulta que muestre a todos los usuarios con más de 80 transacciones utilizando al menos 2 tablas.
 
-SELECT u.id, t.num_transacciones, u.name, u.surname
-FROM (SELECT user_id, COUNT(id) AS num_transacciones  
-		FROM transaction      									 # subconsulta sobre tabla transaction 
-		GROUP BY user_id 										 # agrupa por user
-        HAVING COUNT(id) > 80) AS t								 # limita a mas de 80 transacciones
-JOIN user AS u
-WHERE t.user_id = u.id;
+SELECT id, t.num_transacciones, name, surname
+FROM user, (SELECT user_id, COUNT(id) AS num_transacciones FROM transaction				# subconsulta sobre tabla transaction 					 
+			GROUP BY user_id HAVING COUNT(id) > 80) AS t								# agrupa por user limita a mas de 80 transacciones 
+WHERE t.user_id = id;
+
+SELECT user_id, COUNT(id) AS num_transacciones, (SELECT name FROM user 
+												WHERE id = t.user_id) AS user_name		# subconsulta sobre tabla user
+FROM transaction AS t      									
+GROUP BY user_id 										 
+HAVING COUNT(id) > 80 ;
 
 # Ejercicio 2
 # Muestra la media de amount por IBAN de las tarjetas de crédito en la compañía Donec Ltd., utiliza por lo menos 2 tablas.
