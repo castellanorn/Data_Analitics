@@ -1,1 +1,4 @@
+El procesamiento de los datos con NLP se realizo:
 
+1. Extraccion de Skills
+2. Extraccion de requisitos
