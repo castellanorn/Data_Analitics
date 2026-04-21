@@ -1,1 +1,7 @@
+El proyecto se realizo en el siguiente orden:
 
+1. Extracción de datos
+2. Preprocesamiento de datos
+3. Procesamiento de datos
+4. Estructuración de datos
+5. Visualizacion de datos.
