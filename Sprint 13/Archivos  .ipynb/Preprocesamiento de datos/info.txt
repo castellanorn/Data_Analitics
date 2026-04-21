@@ -1,1 +1,4 @@
+Preprocesamiento de datos
 
+1. Se realizo la preparacion de los datos
+2. Se realizo la depuracion de los datos
