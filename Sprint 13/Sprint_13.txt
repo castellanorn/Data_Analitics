@@ -1,1 +1,8 @@
+En este sprint se realizo el proyecto "Una mirada a las Ofertas de Data Analyst en Barcelona usando Web Scraping y NLP"
+el mismo se ejecuto por completo en python y en este repositorio se almacenan todo los resultados.
 
+1. Datos
+2. Codigo .ipynb
+3. Presentacion para la defensa
+4. Informe Final
+5. README
